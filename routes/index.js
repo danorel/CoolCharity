@@ -96,4 +96,76 @@ module.exports = (app) => {
             ...config[lang || 'ukr'],
         });
     });
+
+    app.get('/admin', async (req, res) => {
+        const { lang } = req.query;
+
+        /*
+         * Find all projects in the list.
+         * Mongoose Error 500.
+         */
+        const [errFind, projectsAll] = await to(Project.find({}));
+        if (errFind) throw errFind;
+
+        return res.render('admin', {
+            locale: lang || 'ukr',
+            project: projectsAll.map((p) => {
+                return {
+                    _id: p._id,
+                    name: p.name,
+                    description: p.description,
+                    isLess: p.isLess,
+                };
+            }),
+            ...config[lang || 'ukr'],
+        });
+    });
+
+    app.post('/admin', async (req, res) => {
+        const { id, lang, operation } = req.query;
+        const { name, description } = req.body;
+
+        switch (operation) {
+            case 'remove':
+                const [errRemove] = await to(
+                    Project.findByIdAndDelete(new mongoose.Types.ObjectId(id)),
+                );
+                if (errRemove) throw errRemove;
+                break;
+
+            case 'create':
+                const [errNew] = await to(
+                    new Project({
+                        name,
+                        description,
+                        isLess: true,
+                    }).save(),
+                );
+                if (errNew) throw errNew;
+                break;
+
+            default:
+                break;
+        }
+
+        /*
+         * Find all projects in the list.
+         * Mongoose Error 500.
+         */
+        const [errFind, projectsAll] = await to(Project.find({}));
+        if (errFind) throw errFind;
+
+        return res.render('admin', {
+            locale: lang || 'ukr',
+            project: projectsAll.map((p) => {
+                return {
+                    _id: p._id,
+                    name: p.name,
+                    description: p.description,
+                    isLess: p.isLess,
+                };
+            }),
+            ...config[lang || 'ukr'],
+        });
+    });
 };

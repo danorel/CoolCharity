@@ -6,6 +6,7 @@ module.exports = {
         },
         form: {
             title: 'Зробити внесок',
+            titleAdmin: 'Новий проєкт',
             validation: {
                 email: "Електронна пошта є обов'язковим полем",
                 donation: "Розмір коштів є обов'язковим полем",
@@ -13,11 +14,15 @@ module.exports = {
             labels: {
                 email: 'Вкажіть Вашу пошту',
                 password: 'Введіть суму внеску, USD',
+                name: 'Назва проєкту',
+                description: 'Вкажіть опис проєкту',
             },
             smalls: {
                 email: 'Ми ніколи не будемо ділитися Вашою поштою з кимось іншим.',
+                name: 'Ця назва буде показуватись Вашим клієнтам',
             },
             confirm: 'Надіслати кошти',
+            create: 'Опублікувати проєкт',
         },
         navbar: {
             title: 'Крута Благодійність',
@@ -52,6 +57,7 @@ module.exports = {
             empty: 'Ще не було зареєстровано жодного проєкту!',
             more: 'Детальніше...',
             less: 'Згорнути опис...',
+            remove: 'Видалити проєкт',
         },
         about: {
             more: 'Дізнатись більше',
@@ -68,6 +74,7 @@ module.exports = {
         },
         form: {
             title: 'Donate',
+            titleAdmin: 'New project',
             validation: {
                 email: 'E-mail is a required field',
                 donation: 'Donation size is a required field',
@@ -75,11 +82,15 @@ module.exports = {
             labels: {
                 email: 'E-mail',
                 password: 'Input donation amounts, USD',
+                name: 'Name of the project',
+                description: 'Enter the project description',
             },
             smalls: {
                 email: "We' ll never share your email with anyone else.",
+                name: 'This naming will be shown to your clients',
             },
             confirm: 'Make donation',
+            create: 'Publish project',
         },
         navbar: {
             title: 'Cool Charity',
@@ -114,6 +125,7 @@ module.exports = {
             empty: 'There are no projects registered yet!',
             more: 'Read more...',
             less: 'Hide...',
+            remove: 'Remove project',
         },
         about: {
             more: 'Learn more',
