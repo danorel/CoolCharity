@@ -12,7 +12,10 @@ const server = {
 };
 
 const mongo = {
-    connection: mode('mongodb://mongo/session-identifier', 'mongodb://localhost:27017/session-identifier'),
+    connection: mode(
+        'mongodb://mongo/session-identifier',
+        'mongodb://localhost:27017/session-identifier',
+    ),
 };
 
 module.exports = {

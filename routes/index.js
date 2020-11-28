@@ -1,44 +1,43 @@
 const to = require('await-to-js').default;
 
-const Session = require('../models/Session');
+const config = require('../config/languages');
 
-module.exports = app => {
-    app.get(
-        '/',
-        async (req, res) => {
-            let
-                err,
-                sessionOne,
-                sessionAll;
+const Project = require('../models/Project');
 
-            [err, sessionOne] = await to(
-                Session
-                    .findOne({
-                        uuid: req.session.id
-                    })
-            );
-            if (err) throw err;
+module.exports = (app) => {
+    app.get('/', async (req, res) => {
+        const { lang } = req.query;
 
-            if (!sessionOne) {
-                [err, sessionOne] = await to(
-                    new Session({
-                        uuid: req.session.id
-                    }).save()
-                );
-                if (err) throw err;
-            }
+        console.log(lang);
 
-            [err, sessionAll] = await to(
-                Session
-                    .find({})
-                    .count()
-            );
-            if (err) throw err;
-
-            return res
-                .render('index', {
-                    title: 'Лічильник відвідувань',
-                    counter: sessionAll
-                });
+        return res.render('home', {
+            locale: lang || 'ukr',
+            ...config[lang || 'ukr'],
         });
+    });
+
+    app.get('/projects', async (req, res) => {
+        const { lang } = req.query;
+
+        console.log(lang);
+
+        const [err, projects] = await to(Project.find({}));
+
+        return res.render('projects', {
+            locale: lang || 'ukr',
+            ...config[lang || 'ukr'],
+            projects: [],
+        });
+    });
+
+    app.get('/about', async (req, res) => {
+        const { lang } = req.query;
+
+        console.log(lang);
+
+        return res.render('about', {
+            locale: lang || 'ukr',
+            ...config[lang || 'ukr'],
+        });
+    });
 };

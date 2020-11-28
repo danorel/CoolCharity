@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="HbsClassMap">
+    <option name="psiMap">
+      <map>
+        <entry key="$PROJECT_DIR$/views/about.hbs" />
+        <entry key="$PROJECT_DIR$/views/home.hbs" />
+        <entry key="$PROJECT_DIR$/views/layouts/main.hbs" />
+        <entry key="$PROJECT_DIR$/views/projects.hbs" />
+      </map>
+    </option>
+  </component>
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">
       <option name="myName" value="Project Default" />
@@ -12,10 +22,43 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
+  <component name="ProjectCodeStyleConfiguration">
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+    <code_scheme name="Project" version="173">
+      <JSCodeStyleSettings>
+        <option name="FORCE_SEMICOLON_STYLE" value="true" />
+        <option name="SPACE_BEFORE_FUNCTION_LEFT_PARENTH" value="false" />
+        <option name="USE_DOUBLE_QUOTES" value="false" />
+        <option name="FORCE_QUOTE_STYlE" value="true" />
+        <option name="ENFORCE_TRAILING_COMMA" value="WhenMultiline" />
+        <option name="SPACES_WITHIN_OBJECT_LITERAL_BRACES" value="true" />
+        <option name="SPACES_WITHIN_IMPORTS" value="true" />
+      </JSCodeStyleSettings>
+      <TypeScriptCodeStyleSettings>
+        <option name="FORCE_SEMICOLON_STYLE" value="true" />
+        <option name="SPACE_BEFORE_FUNCTION_LEFT_PARENTH" value="false" />
+        <option name="USE_DOUBLE_QUOTES" value="false" />
+        <option name="FORCE_QUOTE_STYlE" value="true" />
+        <option name="ENFORCE_TRAILING_COMMA" value="WhenMultiline" />
+        <option name="SPACES_WITHIN_OBJECT_LITERAL_BRACES" value="true" />
+        <option name="SPACES_WITHIN_IMPORTS" value="true" />
+      </TypeScriptCodeStyleSettings>
+      <codeStyleSettings language="JavaScript">
+        <option name="SOFT_MARGINS" value="100" />
+      </codeStyleSettings>
+      <codeStyleSettings language="TypeScript">
+        <option name="SOFT_MARGINS" value="100" />
+      </codeStyleSettings>
+    </code_scheme>
+  </component>
   <component name="ProjectDictionaryState">
     <dictionary name="danorel">
       <words>
+        <w>exphbs</w>
+        <w>extname</w>
+        <w>javascripts</w>
         <w>microservices</w>
+        <w>navbar</w>
       </words>
     </dictionary>
   </component>

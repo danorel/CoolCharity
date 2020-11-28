@@ -2,7 +2,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-module.exports = app => {
+module.exports = (app) => {
     /* Adding request parsers */
     app.use(cors());
     app.use(cookieParser());

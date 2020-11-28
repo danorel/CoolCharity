@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light container-navbar">
+    <a class="navbar-brand">
+        {{navbar.title}}
+    </a>
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"
+         id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            {{#each navbar.components}}
+                <li class="nav-item active">
+                    <a class="nav-link"
+                       href="{{href}}?lang={{../locale}}">{{ title }}
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+        <span class="navbar-text">
+          <ul class="navbar-nav mr-auto">
+              {{#each navbar.languages}}
+                  <li class="nav-item active">
+                    <a class="nav-link"
+                       href="{{currentPath}}?lang={{lang}}">
+                      {{#if (eq lang ../locale)}}
+                          <b>{{title}}</b>
+                          <span class="sr-only">(current)</span>
+                      {{else}}
+                          {{title}}
+                      {{/if}}
+                    </a>
+                </li>
+              {{/each}}
+          </ul>
+        </span>
+    </div>
+</nav>
+
+
+<div class="container-home">
+    <div class="row justify-content-center">
+        <div class='col-6'>
+            <div class="form-div-left">
+                <div class="form-sub-div-left">
+                    {{#each projects}}
+                        <div>
+                            <p class="h4">{{landing.title}}</p>
+                            <p class="h6 mt-3">{{landing.subtitle}}</p>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class='col-6'>
+            <div class="form-div-right">
+                <div class="form-sub-div-right">
+                    <p class="h3">
+                        {{form.title}}
+                    </p>
+                    <form class="mt-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">
+                                {{form.labels.email}}
+                            </label>
+                            <input type="email"
+                                   class="form-control"
+                                   id="exampleInputEmail1"
+                                   aria-describedby="emailHelp"
+                                   placeholder="your-email@gmail.com"
+                                   autofocus>
+                            <small id="emailHelp"
+                                   class="form-text text-muted">
+                                {{form.smalls.email}}
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">
+                                {{form.labels.password}}
+                            </label>
+                            <input type="password"
+                                   class="form-control"
+                                   id="exampleInputPassword1"
+                                   placeholder="29.99">
+                        </div>
+                        <button type="submit"
+                                class="btn btn-primary">
+                            {{form.confirm}}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

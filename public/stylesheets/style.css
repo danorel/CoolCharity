@@ -1,29 +1,69 @@
 body {
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00b7ff;
 }
 
-.container-index {
+.no-gutters {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.container-navbar {
+    width: 100% !important;
+    position: absolute;
+    z-index: 1;
+    background-color: #fff6f6 !important;
+}
+
+.container-home {
     width: 100%;
     height: 100vh;
-    background-color: #ebdbd6;
+    background-color: #f7f6f9 !important;
 }
 
-.counter-div {
+.about-div-left {
     width: 100%;
-    height: 25vh;
+    height: 100vh;
     position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: #ff8a72;
+    background-color: #f7f6f9;
 }
 
-.counter-sub-div {
+.form-div-left {
+    width: 100%;
+    height: 100vh;
     position: absolute;
-    top: 50%; left: 50%;
+    background-color: #f7f6f9;
+}
+
+.form-div-right {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: #ffedea;
+}
+
+.form-sub-div-right {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-sub-div-left {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-sub-div-left {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 
