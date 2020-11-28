@@ -22,6 +22,7 @@ module.exports = {
                 name: 'Ця назва буде показуватись Вашим клієнтам',
             },
             confirm: 'Надіслати кошти',
+            approve: 'Підтвердити заявку',
             create: 'Опублікувати проєкт',
         },
         navbar: {
@@ -55,6 +56,7 @@ module.exports = {
         },
         projects: {
             empty: 'Ще не було зареєстровано жодного проєкту!',
+            emptyApplications: 'Ще не було зареєстровано жодної нової заявки!',
             more: 'Детальніше...',
             less: 'Згорнути опис...',
             remove: 'Видалити проєкт',
@@ -65,6 +67,16 @@ module.exports = {
             motivation: 'Допомогай успішним проєктам ставати ще кращими!',
             text:
                 'На ринку України, та за її теренами, ми допомагаємо найкращим проєктам вже 13 років! Можливо ти хочеш долучитись до їхньої підтримки?',
+        },
+        admin: {
+            application: {
+                title: 'Мої нові заявки',
+                button: 'Перейти',
+            },
+            project: {
+                title: 'Усі проєкти',
+                button: 'Перейти',
+            },
         },
     },
     eng: {
@@ -90,6 +102,7 @@ module.exports = {
                 name: 'This naming will be shown to your clients',
             },
             confirm: 'Make donation',
+            approve: 'Approve application',
             create: 'Publish project',
         },
         navbar: {
@@ -123,9 +136,11 @@ module.exports = {
         },
         projects: {
             empty: 'There are no projects registered yet!',
+            emptyApplications: 'There are no new applications registered yet!',
             more: 'Read more...',
             less: 'Hide...',
             remove: 'Remove project',
+            myApplications: 'My applications',
         },
         about: {
             more: 'Learn more',
@@ -133,6 +148,16 @@ module.exports = {
             motivation: 'Help successful projects become even better!',
             text:
                 'In the market of Ukraine, and abroad, we have been helping the best projects for 13 years! Maybe you want to join their support?',
+        },
+        admin: {
+            application: {
+                title: 'My new applications',
+                button: 'Redirect',
+            },
+            project: {
+                title: 'All Projects',
+                button: 'Redirect',
+            },
         },
     },
 };

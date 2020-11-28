@@ -1,10 +1,23 @@
 const to = require('await-to-js').default;
 const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
 
-const config = require('../config/languages');
+const configLanguages = require('../config/languages'),
+    configApplication = require('../config/application');
 
 const Project = require('../models/Project'),
     Application = require('../models/Application');
+
+let transporter = nodemailer.createTransport({
+    host: 'mail.google.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+        user: process.env.GMAIL_LOGIN, // generated ethereal user
+        pass: process.env.GMAIL_PASSWORD, // generated ethereal password
+    },
+    service: 'gmail',
+});
 
 module.exports = (app) => {
     app.get('/', async (req, res) => {
@@ -12,7 +25,7 @@ module.exports = (app) => {
 
         return res.render('home', {
             locale: lang || 'ukr',
-            ...config[lang || 'ukr'],
+            ...configLanguages[lang || 'ukr'],
         });
     });
 
@@ -66,7 +79,7 @@ module.exports = (app) => {
                     isLess: p.isLess,
                 };
             }),
-            ...config[lang || 'ukr'],
+            ...configLanguages[lang || 'ukr'],
         });
     });
 
@@ -75,7 +88,7 @@ module.exports = (app) => {
 
         return res.render('about', {
             locale: lang || 'ukr',
-            ...config[lang || 'ukr'],
+            ...configLanguages[lang || 'ukr'],
         });
     });
 
@@ -87,13 +100,14 @@ module.exports = (app) => {
             new Application({
                 email,
                 donation,
+                isApproved: configApplication.autoApplication,
             }).save(),
         );
         if (errNew) throw errNew;
 
         return res.render('home', {
             locale: lang || 'ukr',
-            ...config[lang || 'ukr'],
+            ...configLanguages[lang || 'ukr'],
         });
     });
 
@@ -117,7 +131,81 @@ module.exports = (app) => {
                     isLess: p.isLess,
                 };
             }),
-            ...config[lang || 'ukr'],
+            ...configLanguages[lang || 'ukr'],
+        });
+    });
+
+    app.get('/admin/applications', async (req, res) => {
+        const { lang } = req.query;
+
+        /*
+         * Find all projects in the list.
+         * Mongoose Error 500.
+         */
+        const [errFind, applicationAll] = await to(
+            Application.find({
+                isApproved: false,
+            }),
+        );
+        if (errFind) throw errFind;
+
+        return res.render('admin-applications', {
+            locale: lang || 'ukr',
+            application: applicationAll.map((a) => {
+                return {
+                    _id: a._id,
+                    email: a.email,
+                    donation: a.donation,
+                };
+            }),
+            ...configLanguages[lang || 'ukr'],
+        });
+    });
+
+    app.post('/admin/applications', async (req, res) => {
+        const { id, lang } = req.query;
+
+        const [errFindById, application] = await to(
+            Application.findByIdAndUpdate(new mongoose.Types.ObjectId(id), {
+                $set: {
+                    isApproved: true,
+                },
+            }),
+        );
+        if (errFindById) throw errFindById;
+
+        const [errSend] = await to(
+            transporter.sendMail({
+                from: process.env.GMAIL_LOGIN, // sender address
+                to: application.email, // list of receivers
+                subject: 'Hello ✔', // Subject line
+                text: 'Thank you for your application! You were approved successfully', // plain text body
+                html: 'Thank you for your application! You were <b>approved</b> successfully!', // html body
+            }),
+        );
+        if (errSend) throw errSend;
+
+        /*
+         * Find all projects in the list.
+         * Mongoose Error 500.
+         */
+        const [errFind, applicationAll] = await to(
+            Application.find({
+                isApproved: false,
+            }),
+        );
+        if (errFind) throw errFind;
+
+        return res.render('admin-applications', {
+            locale: lang || 'ukr',
+            application: applicationAll.map((a) => {
+                return {
+                    _id: a._id,
+                    email: a.email,
+                    donation: a.donation,
+                };
+            }),
+            ...configLanguages[lang || 'ukr'],
         });
     });
 
@@ -165,7 +253,7 @@ module.exports = (app) => {
                     isLess: p.isLess,
                 };
             }),
-            ...config[lang || 'ukr'],
+            ...configLanguages[lang || 'ukr'],
         });
     });
 };

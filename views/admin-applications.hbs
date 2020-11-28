@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light container-navbar">
+    <a class="navbar-brand">
+        {{navbar.title}}
+    </a>
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"
+         id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            {{#each navbar.components}}
+                <li class="nav-item active">
+                    <a class="nav-link"
+                       href="{{href}}?lang={{../locale}}">{{ title }}
+                    <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+        <span class="navbar-text">
+          <ul class="navbar-nav mr-auto">
+              {{#each navbar.languages}}
+                  <li class="nav-item active">
+                    <a class="nav-link"
+                       href="{{currentPath}}?lang={{lang}}">
+                      {{#if (eq lang ../locale)}}
+                          <b>{{title}}</b>
+                          <span class="sr-only">(current)</span>
+                      {{else}}
+                          {{title}}
+                      {{/if}}
+                      </a>
+                </li>
+              {{/each}}
+          </ul>
+        </span>
+    </div>
+</nav>
+
+
+<div class="container-home">
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="mt-4">
+                <p class="h3">{{admin.application.title}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class='col-12'>
+            <div class="application-div">
+                <div class="application-sub-div">
+                    <ul>
+                        {{#each application}}
+                            <li class="mt-4">
+                                <p class="h5">{{email}}</p>
+                                <p class="h6 mt-2">{{donation}}</p>
+                                <form action="{{currentPath}}?id={{_id}}&lang={{locale}}" method="post">
+                                    <button class="btn btn-sm btn-success">
+                                        {{../form.approve}}
+                                    </button>
+                                </form>
+                            </li>
+                        {{else}}
+                            <p class="h4 mt-4 text-center">{{projects.emptyApplications}}</p>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-12 text-center">
+            <div class="mt-4">
+                <p class="h3">{{admin.project.title}}</p>
+                    <a href="/admin?lang={{locale}}" class="btn btn-sm btn-warning w-25 mt-2">
+                    {{admin.project.button}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

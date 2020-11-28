@@ -12,6 +12,10 @@ const ApplicationSchema = new Schema(
             type: mongoose.SchemaTypes.Number,
             required: true,
         },
+        isApproved: {
+            type: mongoose.SchemaTypes.Boolean,
+            required: true,
+        },
     },
     {
         timestamps: true,

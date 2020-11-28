@@ -4,6 +4,7 @@
     <option name="psiMap">
       <map>
         <entry key="$PROJECT_DIR$/views/about.hbs" />
+        <entry key="$PROJECT_DIR$/views/admin-applications.hbs" />
         <entry key="$PROJECT_DIR$/views/admin.hbs" />
         <entry key="$PROJECT_DIR$/views/home.hbs" />
         <entry key="$PROJECT_DIR$/views/layouts/main.hbs" />
@@ -57,9 +58,12 @@
       <words>
         <w>exphbs</w>
         <w>extname</w>
+        <w>gmail</w>
         <w>javascripts</w>
         <w>microservices</w>
         <w>navbar</w>
+        <w>nodemailer</w>
+        <w>smtp</w>
         <w>upsert</w>
       </words>
     </dictionary>
