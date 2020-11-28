@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 const config = require('../config/languages');
 
-const Project = require('../models/Project');
+const Project = require('../models/Project'),
+    Application = require('../models/Application');
 
 module.exports = (app) => {
     app.get('/', async (req, res) => {
@@ -73,6 +74,24 @@ module.exports = (app) => {
         const { lang } = req.query;
 
         return res.render('about', {
+            locale: lang || 'ukr',
+            ...config[lang || 'ukr'],
+        });
+    });
+
+    app.post('/', async (req, res) => {
+        const { lang } = req.query;
+        const { email, donation } = req.body;
+
+        const [errNew] = await to(
+            new Application({
+                email,
+                donation,
+            }).save(),
+        );
+        if (errNew) throw errNew;
+
+        return res.render('home', {
             locale: lang || 'ukr',
             ...config[lang || 'ukr'],
         });

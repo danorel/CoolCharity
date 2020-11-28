@@ -6,6 +6,10 @@ module.exports = {
         },
         form: {
             title: 'Зробити внесок',
+            validation: {
+                email: "Електронна пошта є обов'язковим полем",
+                donation: "Розмір коштів є обов'язковим полем",
+            },
             labels: {
                 email: 'Вкажіть Вашу пошту',
                 password: 'Введіть суму внеску, USD',
@@ -64,6 +68,10 @@ module.exports = {
         },
         form: {
             title: 'Donate',
+            validation: {
+                email: 'E-mail is a required field',
+                donation: 'Donation size is a required field',
+            },
             labels: {
                 email: 'E-mail',
                 password: 'Input donation amounts, USD',
