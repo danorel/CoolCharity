@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  div(class='container mt-4')
+      h3 Error name: #{error.name}
+      h4 Error status: #{status}
+      - if (status === 403)
+         pre Error message: #{error.data[0].msg}
+      - else
+         pre #{error.stack}
