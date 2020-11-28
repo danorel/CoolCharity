@@ -1,4 +1,5 @@
 const to = require('await-to-js').default;
+const mongoose = require('mongoose');
 
 const config = require('../config/languages');
 
@@ -8,8 +9,6 @@ module.exports = (app) => {
     app.get('/', async (req, res) => {
         const { lang } = req.query;
 
-        console.log(lang);
-
         return res.render('home', {
             locale: lang || 'ukr',
             ...config[lang || 'ukr'],
@@ -17,23 +16,61 @@ module.exports = (app) => {
     });
 
     app.get('/projects', async (req, res) => {
-        const { lang } = req.query;
+        const { lang, id } = req.query;
 
-        console.log(lang);
+        /*
+         * Any show less/more events were triggered?
+         * Find one project and update status.
+         * Mongoose Error 500.
+         */
+        if (id) {
+            const [errFindById, project] = await to(
+                Project.findById(new mongoose.Types.ObjectId(id)),
+            );
+            if (errFindById) throw errFindById;
 
-        const [err, projects] = await to(Project.find({}));
+            const [errFindOneAndUpdate] = await to(
+                Project.findOneAndUpdate(
+                    {
+                        _id: new mongoose.Types.ObjectId(id),
+                    },
+                    {
+                        $set: {
+                            isLess: !project.isLess,
+                        },
+                    },
+                    {
+                        upsert: true,
+                        new: true,
+                    },
+                ),
+            );
+            if (errFindOneAndUpdate) throw errFindOneAndUpdate;
+        }
+
+        /*
+         * Find all projects in the list.
+         * Mongoose Error 500.
+         */
+        const [errFind, projectsAll] = await to(Project.find({}));
+        if (errFind) throw errFind;
 
         return res.render('projects', {
             locale: lang || 'ukr',
+            project: projectsAll.map((p) => {
+                return {
+                    _id: p._id,
+                    name: p.name,
+                    description: p.isLess ? `${p.description.slice(0, 20)}...` : p.description,
+                    isLess: p.isLess,
+                };
+            }),
             ...config[lang || 'ukr'],
-            projects: [],
         });
     });
 
     app.get('/about', async (req, res) => {
         const { lang } = req.query;
-
-        console.log(lang);
 
         return res.render('about', {
             locale: lang || 'ukr',

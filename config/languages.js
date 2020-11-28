@@ -44,6 +44,11 @@ module.exports = {
                 },
             ],
         },
+        projects: {
+            empty: 'Ще не було зареєстровано жодного проєкту!',
+            more: 'Детальніше...',
+            less: 'Згорнути опис...',
+        },
         about: {
             more: 'Дізнатись більше',
             title: 'Ще не з нами?',
@@ -96,6 +101,11 @@ module.exports = {
                     lang: 'eng',
                 },
             ],
+        },
+        projects: {
+            empty: 'There are no projects registered yet!',
+            more: 'Read more...',
+            less: 'Hide...',
         },
         about: {
             more: 'Learn more',

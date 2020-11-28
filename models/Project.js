@@ -12,6 +12,10 @@ const ProjectSchema = new Schema(
             type: mongoose.SchemaTypes.String,
             required: true,
         },
+        isLess: {
+            type: mongoose.SchemaTypes.Boolean,
+            required: true,
+        },
     },
     {
         timestamps: true,

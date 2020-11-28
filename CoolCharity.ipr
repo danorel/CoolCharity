@@ -59,6 +59,7 @@
         <w>javascripts</w>
         <w>microservices</w>
         <w>navbar</w>
+        <w>upsert</w>
       </words>
     </dictionary>
   </component>

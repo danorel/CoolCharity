@@ -49,12 +49,23 @@
         <div class='col-6'>
             <div class="form-div-left">
                 <div class="form-sub-div-left">
-                    {{#each projects}}
-                        <div>
-                            <p class="h4">{{landing.title}}</p>
-                            <p class="h6 mt-3">{{landing.subtitle}}</p>
-                        </div>
-                    {{/each}}
+                    <ul>
+                        {{#each project}}
+                            <li class="mt-4">
+                                <p class="h5">{{name}}</p>
+                                <p class="h6 mt-2">{{description}}</p>
+                                <a href="{{currentPath}}?id={{_id}}&lang={{../locale}}">
+                                    {{#if isLess}}
+                                        {{../projects.more}}
+                                    {{else}}
+                                        {{../projects.less}}
+                                    {{/if}}
+                                </a>
+                            </li>
+                        {{else}}
+                            <p class="h4">{{projects.empty}}</p>
+                        {{/each}}
+                    </ul>
                 </div>
             </div>
         </div>
